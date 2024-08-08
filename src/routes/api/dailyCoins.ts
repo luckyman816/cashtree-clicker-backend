@@ -117,13 +117,13 @@ router.post("/taskList/update/:username", async (req: Request, res: Response) =>
     if (!user) {
         return res.status(400).json({ msg: 'You have no permission' });
     }
-    const { task, status } = req.body;
+    const { task, status, earned } = req.body;
     if(task == "instagram") {
-        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { instagram_status: status });
+        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { "instagram_status.status": status, "instagram_status.earned" : earned });
     } else if (task == "youtube") {
-        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { youtube_status: status });
+        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { "youtube_status.status": status, "youtube_status.earned" : earned });
     } else if (task == "telegram") {
-        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { telegram_status: status });
+        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { "telegram_status.status": status, "telegram_status.earned" : earned });
     }
     const updatedUser = await DailyCoins.findOne({ username: req.params.username });
     return res.json({

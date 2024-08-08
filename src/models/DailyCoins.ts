@@ -6,76 +6,94 @@ const DailyCoinsSchema: Schema = new Schema({
     required: true,
   },
   daily_coins_received_status: {
-    day_1 : {
-        type: Boolean,
-        default: false
+    day_1: {
+      type: Boolean,
+      default: false
     },
-    day_2 : {
-        type: Boolean,
-        default: false
+    day_2: {
+      type: Boolean,
+      default: false
     },
-    day_3 : {
-        type: Boolean,
-        default: false
+    day_3: {
+      type: Boolean,
+      default: false
     },
-    day_4 : {
-        type: Boolean,
-        default: false
+    day_4: {
+      type: Boolean,
+      default: false
     },
-    day_5 : {
-        type: Boolean,
-        default: false
+    day_5: {
+      type: Boolean,
+      default: false
     },
-    day_6 : {
-        type: Boolean,
-        default: false
+    day_6: {
+      type: Boolean,
+      default: false
     },
-    day_7 : {
-        type: Boolean,
-        default: false
+    day_7: {
+      type: Boolean,
+      default: false
     }
   },
-  retweet_status :{
+  retweet_status: {
     day: {
-        type: Date,
-        default: moment().format("YYYY-MM-DD")
+      type: Date,
+      default: moment().format("YYYY-MM-DD")
     },
     status: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false
     }
   },
-  comment_status : {
+  comment_status: {
     day: {
-        type: Date,
-        default: moment().format("YYYY-MM-DD")
+      type: Date,
+      default: moment().format("YYYY-MM-DD")
     },
     status: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false
     }
   },
-  like_status : {
+  like_status: {
     day: {
-        type: Date,
-        default: moment().format("YYYY-MM-DD")
+      type: Date,
+      default: moment().format("YYYY-MM-DD")
     },
     status: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false
     }
   },
-  instagram_status : {
-    type: Boolean,
-    default: false
+  instagram_status: {
+    status: {
+      type: Boolean,
+      default: false
+    },
+    earned: {
+      type: Boolean,
+      default: false
+    }
   },
-  youtube_status : {
-    type: Boolean,
-    default: false
+  youtube_status: {
+    status: {
+      type: Boolean,
+      default: false
+    },
+    earned: {
+      type: Boolean,
+      default: false
+    }
   },
-  telegram_status : {
-    type: Boolean,
-    default: false
+  telegram_status: {
+    status: {
+      type: Boolean,
+      default: false
+    },
+    earned: {
+      type: Boolean,
+      default: false
+    }
   }
 });
 const DailyCoins = model("DailyCoins", DailyCoinsSchema);
