@@ -1,5 +1,4 @@
 import express, { Router, Request, Response } from "express";
-import mongoose from "mongoose";
 import Friend from "../../models/Friend";
 
 const router: Router = express.Router();
@@ -20,7 +19,7 @@ router.post('/add', async (req: Request, res: Response) => {
     } catch (error) {
         res.status(400).json({ msg: error });
     }
-})
+});
 router.post("/:username", async (req: Request, res: Response) => {
     let friend = await Friend.find({ username: req.params.username });
     if (friend) {
@@ -28,5 +27,5 @@ router.post("/:username", async (req: Request, res: Response) => {
     } else {
         return res.status(400).json({ msg: "No Friends" });
     }
-})
-export default router
+});
+export default router;

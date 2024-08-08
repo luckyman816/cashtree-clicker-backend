@@ -8,8 +8,9 @@ import earnings from "./routes/api/earnings";
 import vibe from "./routes/api/vibe";
 import walletAddress from "./routes/api/walletAddress";
 import dailyCoins from "./routes/api/dailyCoins"
+import dailyBoost from "./routes/api/dailyBoost"
 import connectDB from "./lib/dbConnect";
- import dotenv from "dotenv";
+import dotenv from "dotenv";
 
 dotenv.config();
 const app: Express = express();
@@ -32,7 +33,8 @@ app.use("/api/friend", friend);
 app.use("/api/earnings", earnings);
 app.use("/api/vibe", vibe);
 app.use("/api/walletAddress", walletAddress);
-app.use("/api/dailyCoins", dailyCoins)
+app.use("/api/dailyCoins", dailyCoins);
+app.use("/api/dailyBoost", dailyBoost);
 app.get("/api/get-suv-version", (req, res) => {
   res.send(
     JSON.stringify({

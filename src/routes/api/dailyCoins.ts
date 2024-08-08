@@ -67,10 +67,76 @@ router.post('/update/:username', async (req: Request, res: Response) => {
     const updatedUser = await DailyCoins.findOne({ username: req.params.username });
     return res.json({
         _id: updatedUser._id,
-        daily_coins_received_status: updatedUser.daily_coins_received_status
+        daily_coins_received_status: updatedUser.daily_coins_received_status,
+        retweet_status: updatedUser.retweet_status,
+        comment_status: updatedUser.comment_status,
+        like_status: updatedUser.like_status,
+        instagram_status: updatedUser.instagram_status,
+        youtube_status: updatedUser.youtube_status,
+        telegram_status: updatedUser.telegram_status,
     });
 });
+router.post("/dailyTask/update/:username", async (req: Request, res: Response) => {
+    const user = await DailyCoins.findOne({ username: req.params.username });
 
+    if (!user) {
+        return res.status(400).json({ msg: 'You have no permission' });
+    }
+    const { task, day, day_status } = req.body;
+
+    if(task == "retweet") {
+        await DailyCoins.findOneAndUpdate(
+            { username: req.params.username },
+            {"retweet_status.day" : day , "retweet_status.status" : day_status},
+        )
+    } else if (task == "comment") {
+        await DailyCoins.findOneAndUpdate(
+            { usename: req.params.username},
+            {"comment_status.day" : day, "comment_status.status" : day_status},
+        )
+    } else if (task == "like") {
+        await DailyCoins.findOneAndUpdate(
+            { username: req.params.username },
+            {"like_status.day" : day, "like_status.status" : day_status},
+        )
+    }
+    const updatedUser = await DailyCoins.findOne({ username: req.params.username });
+    return res.json({
+        _id: updatedUser._id,
+        daily_coins_received_status: updatedUser.daily_coins_received_status,
+        retweet_status: updatedUser.retweet_status,
+        comment_status: updatedUser.comment_status,
+        like_status: updatedUser.like_status,
+        instagram_status: updatedUser.instagram_status,
+        youtube_status: updatedUser.youtube_status,
+        telegram_status: updatedUser.telegram_status,
+    });
+});
+router.post("/taskList/update/:username", async (req: Request, res: Response) => {
+    const user = await DailyCoins.findOne({ username: req.params.username });
+    if (!user) {
+        return res.status(400).json({ msg: 'You have no permission' });
+    }
+    const { task, status } = req.body;
+    if(task == "instagram") {
+        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { instagram_status: status });
+    } else if (task == "youtube") {
+        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { youtube_status: status });
+    } else if (task == "telegram") {
+        await DailyCoins.findOneAndUpdate({ username: req.params.username }, { telegram_status: status });
+    }
+    const updatedUser = await DailyCoins.findOne({ username: req.params.username });
+    return res.json({
+        _id: updatedUser._id,
+        daily_coins_received_status: updatedUser.daily_coins_received_status,
+        retweet_status: updatedUser.retweet_status,
+        comment_status: updatedUser.comment_status,
+        like_status: updatedUser.like_status,
+        instagram_status: updatedUser.instagram_status,
+        youtube_status: updatedUser.youtube_status,
+        telegram_status: updatedUser.telegram_status,
+    });
+})
 router.post("/:username", async (req: Request, res: Response) => {
     let user = await DailyCoins.findOne({ username: req.params.username });
     if (user) {

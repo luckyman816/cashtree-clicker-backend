@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import moment from "moment";
 const DailyCoinsSchema: Schema = new Schema({
   username: {
     type: String,
@@ -35,6 +35,48 @@ const DailyCoinsSchema: Schema = new Schema({
         default: false
     }
   },
+  retweet_status :{
+    day: {
+        type: Date,
+        default: moment().format("YYYY-MM-DD")
+    },
+    status: {
+        type: Boolean,
+        default: false
+    }
+  },
+  comment_status : {
+    day: {
+        type: Date,
+        default: moment().format("YYYY-MM-DD")
+    },
+    status: {
+        type: Boolean,
+        default: false
+    }
+  },
+  like_status : {
+    day: {
+        type: Date,
+        default: moment().format("YYYY-MM-DD")
+    },
+    status: {
+        type: Boolean,
+        default: false
+    }
+  },
+  instagram_status : {
+    type: Boolean,
+    default: false
+  },
+  youtube_status : {
+    type: Boolean,
+    default: false
+  },
+  telegram_status : {
+    type: Boolean,
+    default: false
+  }
 });
 const DailyCoins = model("DailyCoins", DailyCoinsSchema);
 
