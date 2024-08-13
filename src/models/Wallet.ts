@@ -12,7 +12,7 @@ const WalletSchema: Schema = new Schema({
   },
   energy: {
     type: Number,
-    default: 5000
+    default: 0
   },
   full_energy: {
     type: Number,
